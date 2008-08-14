@@ -1,0 +1,14 @@
+rdigg
+=====
+
+Digg API wrapper in a Rails plugin.  
+
+
+Example
+=======
+
+a = Rdigg.new
+a.user.find_submissions("kevinrose", :count => 3)  # returns a hash with kevinrose's 3 most recent story submissions
+
+
+Copyright (c) 2008 John Yerhot, released under the MIT license

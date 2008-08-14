@@ -26,7 +26,7 @@ class Stories < Rdigg
 
 # /stories/{comma-separated list of story ids}/diggs
 # list of diggs from ids
-  def find_diggs_by_ids(*args)
+  def find_diggs_by_ids(ids, *args)
     path = "stories/#{ids.to_s}/diggs"
      Rdigg.fetch(path, 'digg', args)
   end
@@ -132,36 +132,36 @@ class Stories < Rdigg
 # /stories/topic/topic_name
 # list of stories inside a topic
   def find_by_topic(topic, *args)    
-    path = "/stories/topic/#{topoic}"
+    path = "/stories/topic/#{topic}"
     Rdigg.fetch(path, @@type, args)
   end
   
 # /stories/topic/topic_name/popular
 # list of popular stories inside a topic
   def find_popular_by_topic(topic, *args)
-    path = "/stories/topic/#{topoic}/popular"
+    path = "/stories/topic/#{topic}/popular"
     Rdigg.fetch(path, @@type, args)
   end
   
 # /stories/topic/topic_name/hot
 # list of hot stories inside a topic
   def find_hot_by_topic(topic, *args)
-    path = "/stories/topic/#{topoic}/hot"
+    path = "/stories/topic/#{topic}/hot"
     Rdigg.fetch(path, @@type, args)
   end
 
 # /stories/topic/topic_name/top
 # list of top stories insidea a topic
   def find_top_by_topic(topic, *args)    
-    path = "/stories/topic/#{topoic}/top"
+    path = "/stories/topic/#{topic}/top"
     Rdigg.fetch(path, @@type, args)
   end
   
 # /stories/topic/topic_name/upcoming
 # list of upcoming stories inside a topic
   def find_upcoming_by_topic(topic, *args)
-   path = "/stories/topic/#{topoic}/upcoming"
-   Rdigg.fetch(path, args)
+   path = "/stories/topic/#{topic}/upcoming"
+   Rdigg.fetch(path, @@type, args)
   end
 
 # /stories/comments

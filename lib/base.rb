@@ -1,7 +1,7 @@
 # Remember that all dates sent to Digg must be Unix epoch format. Use to_i to get any date objects to epch.=
 require 'rdigg'
 require 'net/http'
-
+require 'cgi'
 require 'rexml/document'
 require 'rexml/xpath'
 
@@ -20,6 +20,7 @@ class Rdigg
 	def users() @users = DiggUsers.new end
 	def galleryphoto() @galleryphoto = GalleryPhoto.new end
 	def galleryphotos() @galleryphotos = GalleryPhotos.new end
+	def media() @media = Media.new end
 	
 	  
 # Actually send out the request and grab the XML response.

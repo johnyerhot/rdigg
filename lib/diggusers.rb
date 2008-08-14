@@ -2,7 +2,7 @@ require 'rdigg'
 
 class DiggUsers
   
-# /usera/usernames/comments
+# /users/usernames/comments
 # list of comments from provided user_ids
   def find_users_comments(usernames, *args)
     path = "users/#{usernames}/comments"

@@ -3,6 +3,7 @@ require 'rdigg'
 class Story < Rdigg
 
 @@type = "story"
+
 # /story/id
 # story with specified id
   def find(id, *args)

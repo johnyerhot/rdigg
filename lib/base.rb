@@ -6,20 +6,32 @@ require 'rexml/document'
 require 'rexml/xpath'
 
 class Rdigg
-# @config = YAML.load_file("#{RAILS_ROOT}/config/rdigg.yml")
+
 #put your api key here.  currently, it can be almost anything
 @api_key = "http://www.johnyerhot.com"
 
 # If Digg ever changes it's api uri, you'd change it here
 @api_url = "http://services.digg.com"
 
-# shortcuts baby
+# short cut to Stories Class
 	def stories() @stories = Stories.new end
+	  
+# short cut to Story Class
 	def story() @story = Story.new end
+	  
+# short cut to DiggUser Class
 	def user() @user = DiggUser.new end
+	  
+# short cut to DiggUsers Class
 	def users() @users = DiggUsers.new end
+	  
+# short cut to GalleryPhoto Class
 	def galleryphoto() @galleryphoto = GalleryPhoto.new end
+	  
+# short cut to GalleryPhotos Class
 	def galleryphotos() @galleryphotos = GalleryPhotos.new end
+	  
+# short cut to Media Class
 	def media() @media = Media.new end
 	
 	  
@@ -35,7 +47,7 @@ class Rdigg
     end
 # returns the response converted from XML to a Ruby hash
     result = REXML::Document.new( response.body.to_s, {:raw => "all"})
-   # result << REXML.XMLDecl.default
+# result << REXML.XMLDecl.default
     return self.create_array(result, type)
   end
   
@@ -75,7 +87,6 @@ private
   
   def self.get_hash_from_response(xml)    
    x =  REXML::Document.new xml
-    #j = get_json(json)
     return x
   end
 

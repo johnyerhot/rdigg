@@ -3,18 +3,46 @@ rdigg
 
 Digg API wrapper in a Rails plugin.  
 
+Currently living at 
+	git://github.com/johnyerhot/rdigg.git
+	
+API Keys
+=======
+Digg needs you to use an API key.  This should be your application's URI.
+You can change the API Key by changing @api_key (rdigg/lib/base:11) to your key.
+
+More information available at
+	http://apidoc.digg.com/ApplicationKeys
+	
+Arguments
+=========
+Digg's API lets you specify many arguments to filter the requested data.  Depending on what you are requesting, the arguments can differ.  Eventually, I'll document exactly which arguments work with each method.
+
+Arguments get supplied as a symbol. For example:
+	digg.stories.find(:count => 3)
+	
+If the method requires a parameter, that should be supplied first. For example:
+	digg.user.find_submissions("kevinrose", :count => 3)
+	
+
+The common arguments that work on the majority of methods include:
+	* :count => 5 # only returns 5 results
+	* :offset => 30 # skips the first 30 results
+	* :sort => object_type-asc, or object_type-desc # how to sort the results.  Substitute object_type for the object type you're searching for.
+	
+You really should go over Digg's API wiki to see exactly what arguments and how they should be supplied.
 
 Example
 =======
 
-digg = Rdigg.new
-stories = digg.user.find_submissions("kevinrose", :count => 3) # => stories.first[:story] = story text
+	digg = Rdigg.new
+	stories = digg.user.find_submissions("kevinrose", :count => 3)  # => returns an array containing the results in a hash.
+    stories.first[:story] # => story text
 
 
 Digg returns a lot of attributes relating to what you're looking for.  Each of these are stored in the returned hash.
 
-stories.first[:diggs]
-
+	stories.first[:diggs] # => number of diggs the story has.
 
 
 Copyright (c) 2008 John Yerhot, released under the MIT license

@@ -1,4 +1,3 @@
-# Remember that all dates sent to Digg must be Unix epoch format. Use to_i to get any date objects to epch.=
 require 'rdigg'
 require 'net/http'
 require 'cgi'
@@ -7,34 +6,37 @@ require 'rexml/xpath'
 
 class Rdigg
 
+# Remember that all dates sent to Digg must be Unix epoch format. Use to_i to get any date objects to epch.
 #put your api key here.  currently, it can be almost anything
 @api_key = "http://www.johnyerhot.com"
 
 # If Digg ever changes it's api uri, you'd change it here
 @api_url = "http://services.digg.com"
 
-# short cut to Stories Class
+# shortcut to Stories Class
 	def stories() @stories = Stories.new end
 	  
-# short cut to Story Class
+# shortcut to Story Class
 	def story() @story = Story.new end
 	  
-# short cut to DiggUser Class
+# shortcut to DiggUser Class
 	def user() @user = DiggUser.new end
 	  
-# short cut to DiggUsers Class
+# shortcut to DiggUsers Class
 	def users() @users = DiggUsers.new end
 	  
-# short cut to GalleryPhoto Class
+# shortcut to GalleryPhoto Class
 	def galleryphoto() @galleryphoto = GalleryPhoto.new end
 	  
-# short cut to GalleryPhotos Class
+# shortcut to GalleryPhotos Class
 	def galleryphotos() @galleryphotos = GalleryPhotos.new end
 	  
-# short cut to Media Class
+# shortcut to Media Class
 	def media() @media = Media.new end
 	
-	  
+# shortcut to Info Class
+  def info() @info = Info.new end
+
 # Actually send out the request and grab the XML response.
   def self.fetch(path, type, args)
     path = path
@@ -47,7 +49,7 @@ class Rdigg
     end
 # returns the response converted from XML to a Ruby hash
     result = REXML::Document.new( response.body.to_s, {:raw => "all"})
-# result << REXML.XMLDecl.default
+
     return self.create_array(result, type)
   end
   

@@ -1,5 +1,5 @@
 require 'rdigg'
- 
+
 class Story < Rdigg
 
 @@type = "story"

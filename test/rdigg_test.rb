@@ -381,4 +381,30 @@ class RdiggTest < Test::Unit::TestCase
   def user_dugg?
     assert_not_nil @rdigg.stories.user_dugg?("7987660", "kevinrose")
   end
+  
+# Info Class Tests
+
+# /containers
+# grabs list of all container names
+  def get_containers
+    assert_not_nil @rdigg.info.get_containers
+  end
+
+# /container/container_name
+# gets details of specificed container
+  def get_container(container_name)
+    assert_not_nil @rdigg.info.get_container("technology")
+  end
+
+# /errors
+# gets all error codes
+  def get_error_codes
+    assert_not_nil @rdigg.info.get_error_codes
+  end
+  
+# /errors/code_name
+# gets details of specified error
+  def get_error_code(code)
+    assert_not_nil @rdigg.info.get_error_code("500")
+  end
 end

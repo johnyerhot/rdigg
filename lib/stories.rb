@@ -1,4 +1,5 @@
 require 'rdigg'
+
 class Stories < Rdigg
   
 @@type = "story"
@@ -170,6 +171,5 @@ class Stories < Rdigg
     path = "stories/comments"
     Rdigg.fetch(path, 'comment', args)
   end
-
-
+  
 end

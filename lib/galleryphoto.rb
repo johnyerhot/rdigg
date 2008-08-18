@@ -31,4 +31,5 @@ class GalleryPhoto < Rdigg
     path = "galleryphoto/#{story_id}/comment/#{comment_id}/replies"
      Rdigg.fetch(path, "comments", args)
   end
+
 end

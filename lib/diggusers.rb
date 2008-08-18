@@ -1,6 +1,6 @@
 require 'rdigg'
 
-class DiggUsers
+class DiggUsers < Rdigg
   
 # /users/usernames/comments
 # list of comments from provided user_ids

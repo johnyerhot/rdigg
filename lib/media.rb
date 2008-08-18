@@ -17,4 +17,5 @@ class Media < Rdigg
     path = "medium/#{medium}"
      Rdigg.fetch(path, @@type, args)
   end
+
 end

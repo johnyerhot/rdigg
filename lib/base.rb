@@ -4,6 +4,9 @@ require 'cgi'
 require 'rexml/document'
 require 'rexml/xpath'
 
+# fix for DOS valunerability found in REXML.
+require 'rexml-expansion-fix'
+
 class Rdigg
 
 # Remember that all dates sent to Digg must be Unix epoch format. Use to_i to get any date objects to epch.

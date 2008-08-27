@@ -56,16 +56,10 @@ class Rdigg
     return self.create_array(result, type)
   end
   
-  def clear_cache()
-    @stories = nil
-    @user = nil
-    @story = nil
-  end
-  
 private
 
   def self.app_key
-    "?appkey=#{CGI::escape @api_key}"
+    "?appkey=#{CGI::escape @settings[:api_key]}"
   end
 
 # parse the xml adding attributes as hashes and adding node text as attr_accessors

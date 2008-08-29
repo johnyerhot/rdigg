@@ -1,5 +1,4 @@
 # rdigg
-require 'yaml'
 require 'base'
 require 'stories'
 require 'story'

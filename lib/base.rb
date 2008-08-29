@@ -3,6 +3,7 @@ require 'net/http'
 require 'cgi'
 require 'rexml/document'
 require 'rexml/xpath'
+require 'yaml'
 
 # fix for DOS valunerability found in REXML.
 require 'rexml-expansion-fix'
@@ -10,11 +11,10 @@ require 'rexml-expansion-fix'
 class Rdigg
 
 # Remember that all dates sent to Digg must be Unix epoch format. Use to_i to get any date objects to epch.
-#put your api key here.  currently, it can be almost anything
-@api_key = "http://www.johnyerhot.com"
 
-# If Digg ever changes it's api uri, you'd change it here
-@api_url = "http://services.digg.com"
+# Load settings from config file
+@settings = YAML::load_file("#{RAILS_ROOT}/config/rdigg.yml")
+
 
 # shortcut to Stories Class
 	def stories() @stories = Stories.new end
@@ -43,17 +43,23 @@ class Rdigg
 # Actually send out the request and grab the XML response.
   def self.fetch(path, type, args)
     path = path
-    uri = URI.parse(@api_url + '/' + path)
+    uri = URI.parse(@settings[:api_uri] + '/' + path)
     
     @complete_path = uri.path + self.app_key + self.set_arguments(args)
     
     response = Net::HTTP.start(uri.host, uri.port) do |http|
-        http.get @complete_path , 'User-Agent' => @api_key, 'Accept' => 'text/xml'
+        http.get @complete_path , 'User-Agent' => @settings[:api_key], 'Accept' => 'text/xml'
     end
 # returns the response converted from XML to a Ruby hash
     result = REXML::Document.new( response.body.to_s, {:raw => "all"})
 
     return self.create_array(result, type)
+  end
+  
+  def clear_cache()
+    @stories = nil
+    @user = nil
+    @story = nil
   end
   
 private

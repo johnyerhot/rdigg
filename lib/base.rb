@@ -56,12 +56,6 @@ class Rdigg
     return self.create_array(result, type)
   end
   
-  def clear_cache()
-    @stories = nil
-    @user = nil
-    @story = nil
-  end
-  
 private
 
   def self.app_key

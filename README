@@ -17,7 +17,7 @@ Be sure to replace api_key with your application's uri.
 API Keys
 =======
 Digg needs you to use an API key.  This should be your application's URI.
-You can change the API Key by changing @api_key (rdigg/lib/base:11) to your key.
+You can change the API Key by changing @api_key (see above) to your key.
 
 More information available at
 	http://apidoc.digg.com/ApplicationKeys
